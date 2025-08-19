@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quant-dah-starter"
+version = "0.1.0"
+description = "Starter framework for day-ahead hourly power backtesting"
+authors = [{name="Your Team", email="team@example.com"}]
+requires-python = ">=3.10"
+dependencies = [
+  "pandas>=2.1",
+  "numpy>=1.26",
+  "PyYAML>=6.0",
+  "matplotlib>=3.7",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-q"

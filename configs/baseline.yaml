@@ -1,0 +1,27 @@
+run:
+  run_id: "baseline"
+  artifacts_dir: "artifacts"
+
+data:
+  path: "data_dah.csv"  # absolute or relative path
+
+engine:
+  start: "2059-01-05"   # first entry_time date to trade (YYYY-MM-DD)
+  end:   "2060-12-30"   # last entry_time date to trade
+  end_now: "2060-05-31 11:50:00+01:00"  # enforce no-future access
+
+risk:
+  per_hour_bounds: [-10, 10]
+  daily_abs_cap: 120  # optional, set null to disable
+
+costs:
+  fee_per_mwh: 0.05
+  bps_per_trade: 1.0    # bps applied on notional for open + close
+
+components:
+  datasource: "src.data.datasource:CSVDayaheadDataSource"
+  model: "src.models.baseline:YesterdayPremiumModel"
+  policy: "src.strategy.baseline:SignPolicy"
+  risk: "src.risk.manager:SimpleRiskManager"
+  broker: "src.exec.broker:SimpleBroker"
+  reporter: "src.metrics.reporter:Reporter"

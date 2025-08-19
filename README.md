@@ -1,29 +1,22 @@
-# InC-Dev-Challenge
-Framework-first quant dev challenge: build a pluggable day-ahead power backtester with CLI, tests, and OOS report. Fork to start and open a PR.
-# Quant DAH Framework Challenge
+# quant-dah-starter-repo
 
-**Build a small, extensible backtesting framework** for day-ahead hourly (DAH) power contracts. We use this as our *quant developer* hiring exercise to assess framework thinking, software quality, and operability—not just modeling chops.
-
-> 📣 **How to participate:** **Fork this repo**, complete the tasks below, and submit a PR titled `Submission: <Your Name>`.
-
----
-
-## Why this challenge?
-We’re hiring a quant developer who can design and ship robust framework tooling:
-- Clean abstractions (data → model → policy → risk → broker → metrics)
-- Correctness (no leakage, constraints, accounting)
-- Engineering quality (tests, CLI, reproducibility, CI)
-
-The starter gives you a working skeleton and baseline strategy so you can focus on architecture and polish.
-
----
+Framework-first skeleton for day-ahead hourly power contracts. Pairs with `INSTRUCTIONS.md` for candidates.
 
 ## Quickstart
 ```bash
-git fork <this repo> && git clone <your fork>
-cd <repo>
-python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+python -m venv .venv && source .venv/bin/activate  # or .venv\Scripts\activate on Windows
 pip install -e .
-# Place or point to the dataset:
-# by default we look for ./data_dah.csv (or set path in configs/baseline.yaml)
 python cli.py backtest --config configs/baseline.yaml
+```
+
+## Repo layout
+- `src/` – engine and swappable components
+- `configs/` – example config using the baseline model and policy
+- `tests/` – acceptance tests (leakage, bounds, PnL bookkeeping)
+- `cli.py` – simple CLI for backtest runs
+
+## Data
+Place the provided `data_dah.csv` in the repo root (same folder as `cli.py`), or set an absolute path in your config.
+
+## Artifacts
+Runs write to `artifacts/<run_id>` with metrics JSON, plots, and logs.
